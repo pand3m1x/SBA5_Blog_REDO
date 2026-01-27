@@ -44,9 +44,8 @@ input, textarea {
   max-width: 100%;
   padding: 12px;
   font-size: 16px;
-  border: 2px solid white;
+  border: 2px solid rgb(110, 255, 216);
   border-radius: 5px;
-  transition: 0.3s;
   outline: none;
   box-sizing: border-box;
 }
