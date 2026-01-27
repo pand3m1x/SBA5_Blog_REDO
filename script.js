@@ -1,6 +1,6 @@
 // Create New Posts, with both fields filled requirement, posts displayed, error message [x]
-// Dynamically added posted posts that can be edited []
-// Edit Posts with clear edit button, form validation []
+// Dynamically added posted posts that can be edited [x]
+// Edit Posts with clear edit button, form validation [x]
 // Delete Button that also works to remove from local storage []
 // Data Persistance with Local Storage []
 
@@ -39,36 +39,61 @@ function addPost() {
     localStorage.setItem("posts", JSON.stringify(posts));
 
   loadPosts();
-  console.log("posted!")
+  console.log("Success-fully posted!")
   };
 };
+  
+  function loadPosts() {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    postsContainer.innerHTML = "";
+
+    posts.forEach((post,index) => {
+      const div = document.createElement("div");
+      div.className = "post";
+      const h3 = document.createElement("h3");
+      h3.className = "post-title";
+      h3.textContent = post.title;
+      const p = document.createElement("p");
+      p.className = "post-content";
+      p.textContent = post.content;
+      const editButton = document.createElement("button");
+      editButton.innerText = "✏️"
+
+      editButton.addEventListener("click", function (){
+        editPost(index)
+      })
+
+      div.append(h3, p, editButton);
+      postsContainer.appendChild(div);
+    });
+  };
+loadPosts();
+console.log("You pushed the post button, but did anything happen?")
 
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Editing the Blog Post ♫⋆｡♪ ₊˚♬ ﾟ.
 
-function editPost(index, element, field){
-// const editButton = document.createElement("button");
-// editButton.innerText = "✏️"
-// posts.appendChild(editButton)
-//   editButton.addEventListener("click", (e) =>
-//     editPost(e.target.parentElement))
+function editPost(index){
 const posts = JSON.parse(localStorage.getItem("posts")) || [];
-const newTitle = promt("edit title:", posts[index].title);
+const newTitle = prompt("edit title:", posts[index].title);
 const newContent = prompt("edit content:", posts[index].content);
 
 if (newTitle === ""){
-  alert ("You need a title! 😀");
+  alert ("You need a title! 😀"); // these alerts aren't populating while the field is empty, will need to change this to inline editing?
   return;
 }
 if (newContent === ""){
-  alert ("You gotta have something in the content box! 😀");
+  alert ("You gotta have something in the content box! 😀"); // same as above. Will need to add event.preventDefault() I think.
   return;
 }
 posts[index].title = newTitle;
 posts[index].content = newContent;
 
 localStorage.setItem("posts", JSON.stringify(posts));
+console.log("post edited!")
 }
+loadPosts();
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Deleting the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 
@@ -80,3 +105,9 @@ localStorage.setItem("posts", JSON.stringify(posts));
 //  adding -- Hachi to the end of every entry? Like as a sig
 
 //                            ෴⚘⎧ᴿᴵᴾ⎫⚘෴CODE GRAVEYARD ִֶָ෴⚘⎧ᴿᴵᴾ⎫⚘෴
+
+// const editButton = document.createElement("button");
+// editButton.innerText = "✏️"
+// posts.appendChild(editButton)
+//   editButton.addEventListener("click", (e) =>
+//     editPost(e.target.parentElement))
