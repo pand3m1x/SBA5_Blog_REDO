@@ -8,9 +8,6 @@
 // let content = document.getElementById("content").value;
 // document.addEventListener("DOMContentLoaded", loadPosts); this is for HTML code that don't have script at bottom
 
-//♫⋆｡♪ ₊˚♬ ﾟ.  Variables I want access to outside of greedy functions =-= ♫⋆｡♪ ₊˚♬ ﾟ.
-
-
 //♫⋆｡♪ ₊˚♬ ﾟ. Adding the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 const postButton = document.getElementById("postButton");
 const postsContainer = document.getElementById("posts")
@@ -58,13 +55,19 @@ function addPost() {
       p.className = "post-content";
       p.textContent = post.content;
       const editButton = document.createElement("button");
-      editButton.innerText = "✏️"
+      editButton.innerText = "✏️";
 
       editButton.addEventListener("click", function (){
-        editPost(index)
+        editPost(index);
+      })
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = "🗑️";
+
+      deleteButton.addEventListener("click", function (){
+        deletePost(index);
       })
 
-      div.append(h3, p, editButton);
+      div.append(h3, p, editButton, deleteButton);
       postsContainer.appendChild(div);
     });
   };
@@ -92,8 +95,19 @@ posts[index].content = newContent;
 
 localStorage.setItem("posts", JSON.stringify(posts));
 console.log("post edited!")
+loadPosts(); // can load/render be outside of a function, is it best for it to be inside of the function?
 }
-loadPosts();
+
+
+function deletePost(index) {
+  alert("Are you sure?")
+
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  posts.splice(index, 1);
+  localStorage.setItem("posts", JSON.stringify(posts));
+  loadPosts(); // the answer to the above is yes, or it won't properly call the new state after the function has been ran
+}
+//Big (-ish) problem, the posts don't go back to clear... will need to fix
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Deleting the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 
