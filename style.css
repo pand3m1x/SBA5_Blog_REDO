@@ -25,6 +25,7 @@ body {
   box-shadow: 0 4px 10px rgba(246, 92, 92, 0.408);
   text-align: center;
   box-sizing: border-box;
+  position: absolute;
 }
 
 .input-container {
