@@ -21,6 +21,7 @@ body {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  border: 2px solid rgb(224, 139, 139);
   box-shadow: 0 4px 10px rgba(246, 92, 92, 0.408);
   text-align: center;
   box-sizing: border-box;
@@ -57,13 +58,13 @@ h2 {
 
 input:focus, textarea:focus {
   border-color:aquamarine;
-  box-shadow: 0 0 5px rgba(0,123,255,0.3)
+  box-shadow: 0 0 7px rgba(0,123,255,0.3)
 }
 
 button {
   background-color: pink;
   color: white;
-  border: white;
+  border: 2px solid rgb(224, 139, 139);
   padding: 12px;
   cursor: pointer;
   border-radius: 5px;
@@ -92,14 +93,14 @@ complete-checkbox {
   margin-right: 5px;
 }
 .post {
-  background-color: snow;
+  background-color: rgb(255, 245, 249);
   padding: 15px;
   margin: 10px 0;
   border-left: 5px solid turquoise;
   border-radius: 10px;
   position: relative;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  /* transition: transform 0.2s ease; */
   text-align: left;
 }
 
@@ -114,7 +115,8 @@ complete-checkbox {
 
 .post p {
   margin: 5px 0;
-  color: darkgray;
+  color: rgb(109, 95, 95);
+  font-style: italic;
 }
 
 .actions {

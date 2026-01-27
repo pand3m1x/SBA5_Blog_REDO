@@ -1,8 +1,8 @@
-// Create New Posts, with both fields filled requirement, posts displayed, error message []
-// Dynamically added posted posts that can be edited
-// Edit Posts with clear edit button, form validation
-// Delete Button that also works to remove from local storage
-// Data Persistance with Local Storage
+// Create New Posts, with both fields filled requirement, posts displayed, error message [x]
+// Dynamically added posted posts that can be edited []
+// Edit Posts with clear edit button, form validation []
+// Delete Button that also works to remove from local storage []
+// Data Persistance with Local Storage []
 
 // let title = document.getElementById("title").value;
 // let content = document.getElementById("content").value;
@@ -42,30 +42,33 @@ function addPost() {
   console.log("posted!")
   };
 };
-  
-  function loadPosts() {
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-    postsContainer.innerHTML = "";
-
-    posts.forEach(post => {
-      const div = document.createElement("div");
-      div.className = "post";
-      const h3 = document.createElement("h3");
-      h3.className = "post-title";
-      h3.textContent = post.title;
-      const p = document.createElement("p");
-      p.className = "post-content";
-      p.textContent = post.content;
-
-      div.append(h3, p);
-      postsContainer.appendChild(div);
-    });
-  };
-loadPosts();
-console.log("added post")
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Editing the Blog Post ♫⋆｡♪ ₊˚♬ ﾟ.
+
+function editPost(index, element, field){
+// const editButton = document.createElement("button");
+// editButton.innerText = "✏️"
+// posts.appendChild(editButton)
+//   editButton.addEventListener("click", (e) =>
+//     editPost(e.target.parentElement))
+const posts = JSON.parse(localStorage.getItem("posts")) || [];
+const newTitle = promt("edit title:", posts[index].title);
+const newContent = prompt("edit content:", posts[index].content);
+
+if (newTitle === ""){
+  alert ("You need a title! 😀");
+  return;
+}
+if (newContent === ""){
+  alert ("You gotta have something in the content box! 😀");
+  return;
+}
+posts[index].title = newTitle;
+posts[index].content = newContent;
+
+localStorage.setItem("posts", JSON.stringify(posts));
+}
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Deleting the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 
