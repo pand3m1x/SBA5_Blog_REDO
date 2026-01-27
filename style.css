@@ -44,7 +44,7 @@ input, textarea {
   width: 600px; /*max width needs to change?*/
   max-width: 100%;
   padding: 12px;
-  font-size: 16px;
+  font-size: 1rem;
   border: 2px solid rgb(110, 255, 216);
   border-radius: 5px;
   outline: none;
@@ -68,19 +68,13 @@ button {
   padding: 12px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1.5rem;
   transition: 0.3s ease, transform 0.2s;
 }
 
 button:hover {
-  background-color: lightgray;
-  transform: scale(1.05);
-}
-
-button[data-action] {
-  width: 5px;
-  height: 5px;
-  padding: 2px;
+  background-color: rgb(179, 172, 172);
+  transform: scale(1.03);
 }
 
 .posts-container {
@@ -97,15 +91,15 @@ complete-checkbox {
   padding: 15px;
   margin: 10px 0;
   border-left: 5px solid turquoise;
+  border-bottom: 2px solid turquoise;
   border-radius: 10px;
   position: relative;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  /* transition: transform 0.2s ease; */
   text-align: left;
 }
 
 .post:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .post h3 {
@@ -117,18 +111,4 @@ complete-checkbox {
   margin: 5px 0;
   color: rgb(109, 95, 95);
   font-style: italic;
-}
-
-.actions {
-  display:flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-.delete {
-  background-color: red;
-}
-
-.delete:hover {
-  background-color: aquamarine;
 }

@@ -66,6 +66,8 @@ function addPost() {
       deleteButton.addEventListener("click", function (){
         deletePost(index);
       })
+        // add date stamp here?
+        // add signature here?
 
       div.append(h3, p, editButton, deleteButton);
       postsContainer.appendChild(div);
