@@ -116,8 +116,8 @@ function deletePost(index) {
 //♫⋆｡♪ ₊˚♬ ﾟ. Ideas for Later! ♫⋆｡♪ ₊˚♬ ﾟ.
 //  Music player youtube.com/watch?v=qRkv3gPPRME - or - this one is probably better and less distracting https://www.youtube.com/watch?v=GGU7yCmhjRY
 //  Button that shoots out music notes when submit is hit
-//  Is it possible to make a background with emojis?
-//  adding a date stamp?
+//  Is it possible to make a background with emojis? x
+//  adding a date stamp? 
 //  adding -- Hachi to the end of every entry? Like as a sig
 
 //                            ෴⚘⎧ᴿᴵᴾ⎫⚘෴CODE GRAVEYARD ִֶָ෴⚘⎧ᴿᴵᴾ⎫⚘෴
