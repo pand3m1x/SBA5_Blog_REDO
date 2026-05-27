@@ -45,6 +45,17 @@ function addPost() {
 
     postsContainer.innerHTML = "";
 
+    // if no posts exist
+
+      if (posts.length === 0) {
+    postsContainer.innerHTML = `
+      <p class="empty-message">
+        ♫ No diary entries yet... ♫
+      </p>
+    `;
+    return;
+  }
+
     posts.forEach((post,index) => {
       const div = document.createElement("div");
       div.className = "post";
