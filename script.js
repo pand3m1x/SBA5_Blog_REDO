@@ -95,9 +95,13 @@ function addPost() {
       const dateString = date.toLocaleDateString();
       console.log(dateString);
        
-        // add signature here?
+      // signature here
 
-      div.append(h3, p, dateString, editButton, deleteButton);
+      const signature = document.createElement("p");
+      signature.className = "signature";
+      signature.textContent = "— Hachi ♡";
+
+      div.append(h3, p,  signature, dateString,editButton, deleteButton);
       postsContainer.appendChild(div);
     });
   };
