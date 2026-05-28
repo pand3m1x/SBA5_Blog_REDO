@@ -136,3 +136,11 @@ complete-checkbox {
   color: rgb(109, 95, 95);
   font-style: italic;
 }
+
+.empty-message {
+   color: rgb(140, 120, 120);
+  font-style: italic;
+  text-align: center;
+  margin-top: 40px;
+  opacity: 0.8;
+}

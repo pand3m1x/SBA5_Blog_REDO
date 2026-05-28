@@ -56,31 +56,48 @@ function addPost() {
     return;
   }
 
+    // post elements (div h3 p)
     posts.forEach((post,index) => {
+
       const div = document.createElement("div");
       div.className = "post";
+
       const h3 = document.createElement("h3");
       h3.className = "post-title";
       h3.textContent = post.title;
+
       const p = document.createElement("p");
       p.className = "post-content";
       p.textContent = post.content;
+
+      // edit button
+
       const editButton = document.createElement("button");
       editButton.innerText = "✏️";
 
       editButton.addEventListener("click", function (){
         editPost(index);
       })
+
+      // delete button
+
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "🗑️";
 
       deleteButton.addEventListener("click", function (){
         deletePost(index);
       })
-        // add date stamp here?
+      
+      // date stamp
+
+      const timeStamp = Date.now();
+      const date = new Date(timeStamp);
+      const dateString = date.toLocaleDateString();
+      console.log(dateString);
+       
         // add signature here?
 
-      div.append(h3, p, editButton, deleteButton);
+      div.append(h3, p, dateString, editButton, deleteButton);
       postsContainer.appendChild(div);
     });
   };
@@ -91,6 +108,7 @@ console.log("You pushed the post button, but did anything happen?")
 //♫⋆｡♪ ₊˚♬ ﾟ. Editing the Blog Post ♫⋆｡♪ ₊˚♬ ﾟ.
 
 function editPost(index){
+  
 const posts = JSON.parse(localStorage.getItem("posts")) || [];
 const newTitle = prompt("edit title:", posts[index].title);
 const newContent = prompt("edit content:", posts[index].content);
