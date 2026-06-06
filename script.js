@@ -33,7 +33,10 @@ function addPost() {
 //If both conditions are met the post should be made with below code 
   if (title && content) {
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.push({ title, content });
+    posts.push({ 
+      title, 
+      content,
+      date: new Date().toLocaleDateString() });
     localStorage.setItem("posts", JSON.stringify(posts));
 
     //resets form after submit
@@ -138,18 +141,23 @@ console.log("post edited!")
 loadPosts(); // can load/render be outside of a function, is it best for it to be inside of the function?
 }
 
+//♫⋆｡♪ ₊˚♬ ﾟ.  deleteing post ♫⋆｡♪ ₊˚♬ ﾟ. 
 
 function deletePost(index) {
-  alert("Are you sure?")
+  const confirmDelete = confirm("Are you sure you want to delete this post?");
+
+  if (!confirmDelete) {
+    return; // If the user cancels, exit the function
+  }
 
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
-  posts.splice(index, 1);
-  localStorage.setItem("posts", JSON.stringify(posts));
-  loadPosts(); // the answer to the above is yes, or it won't properly call the new state after the function has been ran
-}
-//Big (-ish) problem, the posts don't go back to clear... will need to fix
 
-//♫⋆｡♪ ₊˚♬ ﾟ. Deleting the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
+  posts.splice(index, 1);
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+
+  loadPosts(); 
+}
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Ideas for Later! ♫⋆｡♪ ₊˚♬ ﾟ.
 //  Music player youtube.com/watch?v=qRkv3gPPRME - or - this one is probably better and less distracting https://www.youtube.com/watch?v=GGU7yCmhjRY
