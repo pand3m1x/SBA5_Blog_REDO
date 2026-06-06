@@ -167,3 +167,9 @@ complete-checkbox {
     transform: translateY(-100px);
   }
 }
+
+.music-player {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
