@@ -29,11 +29,16 @@ function addPost() {
     alert ("Tell the world your thoughts by filling out the content box 😀");
     return;
   }
+
 //If both conditions are met the post should be made with below code 
   if (title && content) {
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
     posts.push({ title, content });
     localStorage.setItem("posts", JSON.stringify(posts));
+
+    //resets form after submit
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
 
   loadPosts();
   console.log("Success-fully posted!")
@@ -150,8 +155,8 @@ function deletePost(index) {
 //  Music player youtube.com/watch?v=qRkv3gPPRME - or - this one is probably better and less distracting https://www.youtube.com/watch?v=GGU7yCmhjRY
 //  Button that shoots out music notes when submit is hit
 //  Is it possible to make a background with emojis? x
-//  adding a date stamp? 
-//  adding -- Hachi to the end of every entry? Like as a sig
+//  adding a date stamp? x
+//  adding -- Hachi to the end of every entry? Like as a sig x
 
 //                            ෴⚘⎧ᴿᴵᴾ⎫⚘෴CODE GRAVEYARD ִֶָ෴⚘⎧ᴿᴵᴾ⎫⚘෴
 
