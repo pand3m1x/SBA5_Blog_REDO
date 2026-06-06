@@ -144,3 +144,26 @@ complete-checkbox {
   margin-top: 40px;
   opacity: 0.8;
 }
+
+/* the extra stuff */
+.music-note {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  font-size: 2rem;
+  pointer-events: none;
+
+  animation: floatUp 2s ease forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}

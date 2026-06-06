@@ -12,7 +12,10 @@
 const postButton = document.getElementById("postButton");
 const postsContainer = document.getElementById("posts")
 
-postButton.addEventListener("click", addPost);
+postButton.addEventListener("click", () => {
+  addPost(),
+  createMusicNotes();
+});
 
 function addPost() {
   let title = document.getElementById("title").value;
@@ -47,6 +50,18 @@ function addPost() {
   console.log("Success-fully posted!")
   };
 };
+
+  function createMusicNotes() {
+    const note = document.createElement("span");
+    
+    note.innerText = "♫";
+    note.classList.add("music-note");
+
+    document.body.appendChild(note);
+
+  setTimeout(() => {
+    note.remove();
+  }, 2000);}
   
   function loadPosts() {
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
