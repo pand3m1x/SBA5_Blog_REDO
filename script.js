@@ -1,12 +1,9 @@
 // Create New Posts, with both fields filled requirement, posts displayed, error message [x]
 // Dynamically added posted posts that can be edited [x]
 // Edit Posts with clear edit button, form validation [x]
-// Delete Button that also works to remove from local storage []
-// Data Persistance with Local Storage []
+// Delete Button that also works to remove from local storage [x]
+// Data Persistance with Local Storage [x]
 
-// let title = document.getElementById("title").value;
-// let content = document.getElementById("content").value;
-// document.addEventListener("DOMContentLoaded", loadPosts); this is for HTML code that don't have script at bottom
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Adding the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 const postButton = document.getElementById("postButton");
@@ -36,38 +33,32 @@ function addPost() {
 
 //If both conditions are met the post should be made with below code 
   if (title && content) {
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.push({ 
-      title, 
+
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  if (editingIndex !== null) {
+
+    posts[editingIndex].title = title;
+    posts[editingIndex].content = content;
+
+  } else {
+
+    posts.push({
+      title,
       content,
-      date: new Date().toLocaleDateString() });
-    localStorage.setItem("posts", JSON.stringify(posts));
+      date: new Date().toLocaleDateString()
+    });
 
+  }
 
-    // when submitting edited posts 
+  localStorage.setItem("posts", JSON.stringify(posts));
 
-    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  editingIndex = null;
 
-      if (editingIndex !== null) {
-        posts[editingIndex].title = title;
-        posts[editingIndex].content = content;
-      } else {
-        posts.push({
-          title,
-          content,
-          date: new Date().toLocaleDateString()
-        });
-      }
+  postButton.textContent = "Post";
 
-    localStorage.setItem("posts", JSON.stringify(posts));
-
-    editingIndex = null;
-
-    postButton.textContent = "Post";
-
-    //resets form after submit
-    document.getElementById("title").value = "";
-    document.getElementById("content").value = "";
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
 
   loadPosts();
   console.log("Success-fully posted!")
@@ -103,6 +94,9 @@ function addPost() {
   }
 
     // post elements (div h3 p)
+    console.log(posts);
+    console.log(typeof posts);
+
     posts.forEach((post,index) => {
 
       const div = document.createElement("div");
@@ -166,26 +160,14 @@ console.log("You pushed the post button, but did anything happen?")
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Editing the Blog Post ♫⋆｡♪ ₊˚♬ ﾟ.
 
-// function editPost(index){
-  
-// const posts = JSON.parse(localStorage.getItem("posts")) || [];
-// const newTitle = prompt("edit title:", posts[index].title);
-// const newContent = prompt("edit content:", posts[index].content);
-
-// if (newTitle === ""){
-//   alert ("You need a title! 😀"); // these alerts aren't populating while the field is empty, will need to change this to inline editing?
-//   return;
-// }
-// if (newContent === ""){
-//   alert ("You gotta have something in the content box! 😀"); // same as above. Will need to add event.preventDefault() I think.
-//   return;
-// }
-// posts[index].title = newTitle;
-// posts[index].content = newContent;}
 
 // New updated edit function that reuses form
 function editPost(index) {
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
+  
+  document.getElementById("title").scrollIntoView({
+    behavior: "smooth"
+  });
 
   document.getElementById("title").value = posts[index].title;
   document.getElementById("content").value = posts[index].content;
@@ -193,15 +175,10 @@ function editPost(index) {
   editingIndex = index;
 
   postButton.textContent = "💾 Save Changes";
+
 }
 
-  document.getElementById("title").scrollIntoView({
-    behavior: "smooth"
-  });
 
-localStorage.setItem("posts", JSON.stringify(posts));
-console.log("post edited!")
-loadPosts(); // can load/render be outside of a function, is it best for it to be inside of the function?
 
 
 //♫⋆｡♪ ₊˚♬ ﾟ.  deleteing post ♫⋆｡♪ ₊˚♬ ﾟ. 
@@ -217,17 +194,15 @@ function deletePost(index) {
 
   posts.splice(index, 1);
 
-  localStorage.setItem("posts", JSON.stringify(posts));
-
   loadPosts(); 
 }
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Ideas for Later! ♫⋆｡♪ ₊˚♬ ﾟ.
-//  Music player youtube.com/watch?v=qRkv3gPPRME - or - this one is probably better and less distracting https://www.youtube.com/watch?v=GGU7yCmhjRY
-//  Button that shoots out music notes when submit is hit
-//  Is it possible to make a background with emojis? x
-//  adding a date stamp? x
-//  adding -- Hachi to the end of every entry? Like as a sig x
+//  Music player youtube.com/watch?v=qRkv3gPPRME - or - this one is probably better and less distracting https://www.youtube.com/watch?v=GGU7yCmhjRY [x] (different song used)
+//  Button that shoots out music notes when submit is hit [x]
+//  Is it possible to make a background with emojis? [x]
+//  adding a date stamp? [x]
+//  adding -- Hachi to the end of every entry? Like as a sig [x]
 
 //                            ෴⚘⎧ᴿᴵᴾ⎫⚘෴CODE GRAVEYARD ִֶָ෴⚘⎧ᴿᴵᴾ⎫⚘෴
 
