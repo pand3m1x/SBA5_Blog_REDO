@@ -10,7 +10,8 @@
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Adding the Blog Post  ♫⋆｡♪ ₊˚♬ ﾟ.
 const postButton = document.getElementById("postButton");
-const postsContainer = document.getElementById("posts")
+const postsContainer = document.getElementById("posts");
+let editingIndex = null;
 
 postButton.addEventListener("click", () => {
   addPost(),
@@ -41,6 +42,28 @@ function addPost() {
       content,
       date: new Date().toLocaleDateString() });
     localStorage.setItem("posts", JSON.stringify(posts));
+
+
+    // when submitting edited posts 
+
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+      if (editingIndex !== null) {
+        posts[editingIndex].title = title;
+        posts[editingIndex].content = content;
+      } else {
+        posts.push({
+          title,
+          content,
+          date: new Date().toLocaleDateString()
+        });
+      }
+
+    localStorage.setItem("posts", JSON.stringify(posts));
+
+    editingIndex = null;
+
+    postButton.textContent = "Post";
 
     //resets form after submit
     document.getElementById("title").value = "";
@@ -143,27 +166,43 @@ console.log("You pushed the post button, but did anything happen?")
 
 //♫⋆｡♪ ₊˚♬ ﾟ. Editing the Blog Post ♫⋆｡♪ ₊˚♬ ﾟ.
 
-function editPost(index){
+// function editPost(index){
   
-const posts = JSON.parse(localStorage.getItem("posts")) || [];
-const newTitle = prompt("edit title:", posts[index].title);
-const newContent = prompt("edit content:", posts[index].content);
+// const posts = JSON.parse(localStorage.getItem("posts")) || [];
+// const newTitle = prompt("edit title:", posts[index].title);
+// const newContent = prompt("edit content:", posts[index].content);
 
-if (newTitle === ""){
-  alert ("You need a title! 😀"); // these alerts aren't populating while the field is empty, will need to change this to inline editing?
-  return;
+// if (newTitle === ""){
+//   alert ("You need a title! 😀"); // these alerts aren't populating while the field is empty, will need to change this to inline editing?
+//   return;
+// }
+// if (newContent === ""){
+//   alert ("You gotta have something in the content box! 😀"); // same as above. Will need to add event.preventDefault() I think.
+//   return;
+// }
+// posts[index].title = newTitle;
+// posts[index].content = newContent;}
+
+// New updated edit function that reuses form
+function editPost(index) {
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  document.getElementById("title").value = posts[index].title;
+  document.getElementById("content").value = posts[index].content;
+
+  editingIndex = index;
+
+  postButton.textContent = "💾 Save Changes";
 }
-if (newContent === ""){
-  alert ("You gotta have something in the content box! 😀"); // same as above. Will need to add event.preventDefault() I think.
-  return;
-}
-posts[index].title = newTitle;
-posts[index].content = newContent;
+
+  document.getElementById("title").scrollIntoView({
+    behavior: "smooth"
+  });
 
 localStorage.setItem("posts", JSON.stringify(posts));
 console.log("post edited!")
 loadPosts(); // can load/render be outside of a function, is it best for it to be inside of the function?
-}
+
 
 //♫⋆｡♪ ₊˚♬ ﾟ.  deleteing post ♫⋆｡♪ ₊˚♬ ﾟ. 
 
