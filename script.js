@@ -113,10 +113,11 @@ function addPost() {
       
       // date stamp
 
-      const timeStamp = Date.now();
-      const date = new Date(timeStamp);
-      const dateString = date.toLocaleDateString();
-      console.log(dateString);
+      const dateElement = document.createElement("p");
+      dateElement.className = "post-date";
+      dateElement.textContent = post.date;
+
+      console.log(post.date);
        
       // signature here
 
@@ -124,7 +125,15 @@ function addPost() {
       signature.className = "signature";
       signature.textContent = "— Hachi ♡";
 
-      div.append(h3, p,  signature, dateString,editButton, deleteButton);
+      div.append(
+        h3, 
+        p,  
+        dateElement,
+        signature, 
+        editButton, 
+        deleteButton
+      );
+
       postsContainer.appendChild(div);
     });
   };
